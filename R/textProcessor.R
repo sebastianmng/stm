@@ -177,7 +177,8 @@ textProcessor <- function(documents, metadata=NULL,
   
   if(stem){
     if(verbose) cat("Stemming... \n")
-    txt <- tm::tm_map(txt, tm::stemDocument, language=language)
+            txt <- tm::tm_map(txt, function(x) tm:::PlainTextDocument(ptstem::ptstem(as.character(x), complete = F)))
+
   }
   
   if(!is.null(metadata)) {
